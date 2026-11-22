@@ -210,7 +210,7 @@ select#rfs{width:100%;padding:10px;border-radius:10px;border:1px solid var(--lin
 <main id="main"></main>
 <div id="gb" hidden></div><div id="toast"></div><div id="ov" hidden><div class="sh" id="sh"></div></div>
 <footer><span id="ft"></span><br>Voorspellingen zijn voor de lol; er is niets te winnen.<br><a href="privacy.html" style="color:inherit">Privacy en voorwaarden</a></footer>
-<div id="ck" hidden><span>Deze site bewaart alleen je instellingen op dit apparaat, zonder tracking.</span> <a href="privacy.html">Privacy en voorwaarden</a><button id="ckb" type="button">Begrepen</button></div>
+<div id="ck" hidden><span>Deze site bewaart alleen je instellingen op dit apparaat, zonder tracking.</span> <a href="privacy.html">Privacy en voorwaarden</a> · <a href="/nl.html">Competities</a> · <a href="/en.html">Competitions</a> · <a href="/tr.html">Ligler</a><button id="ckb" type="button">Begrepen</button></div>
 <script>
 const $=i=>document.getElementById(i);
 const r=s=>{let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}h^=h>>>13;h=Math.imul(h,1274126177);return((h^h>>>16)>>>0)/4294967296};
@@ -615,6 +615,7 @@ document.addEventListener("keydown",e=>{if(e.key=="Enter"){if(e.target.id=="cm")
 try{if(localStorage.getItem("lsck")!=="1")$("ck").hidden=false}catch(e){}
 $("ckb").onclick=()=>{$("ck").hidden=true;try{localStorage.setItem("lsck","1")}catch(e){}};
 setLang(LANG);trAll();
+const dl=()=>{try{const q=new URLSearchParams(location.search),i=+q.get("lg");if(q.get("hl")&&LANGS[q.get("hl")]&&q.get("hl")!=LANG)setLang(q.get("hl"));if(i>0){openLg(i,sea(),q.get("n")||"");history.replaceState(null,"",location.pathname)}}catch(e){}};
 const OLDP="https://scoreatlas.64pkrb59jg.workers.dev";let PROXY="https://api.scoreatlas.org";
-(async()=>{if(PROXY){try{API.key="proxy";API.base=PROXY;try{await loadAll()}catch(e0){PROXY=OLDP;API.base=PROXY;await loadAll()}API.on=true;API.msg="Verbonden";render()}catch(e){API.on=false;API.msg="Proxy-fout: "+e.message+" ("+location.origin+")";}return}try{const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
+(async()=>{if(PROXY){try{API.key="proxy";API.base=PROXY;try{await loadAll()}catch(e0){PROXY=OLDP;API.base=PROXY;await loadAll()}API.on=true;API.msg="Verbonden";render();dl()}catch(e){API.on=false;API.msg="Proxy-fout: "+e.message+" ("+location.origin+")";}return}try{const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
 </script></body></html>
