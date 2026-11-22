@@ -779,7 +779,7 @@ function asideL(){const P=API.on&&CATA?pinA().map(([t,a])=>[t,a.map(x=>`<div cla
 function asideR(){const L=M.filter(m=>m.st=="live").slice(0,8);return`<div class="bx"><div class="bt">Live nu</div>${L.map(m=>`<div class="ai2" data-id="${m.id}"><span>${m.h} – ${m.a}</span><b>${m.s[0]}-${m.s[1]}</b></div>`).join("")||'<div class="mut" style="padding:8px 0">Nu geen live wedstrijden.</div>'}</div><div class="bx pm"><div class="bt">ScoreAtlas Premium</div><p>Geen advertenties, meldingen bij elk doelpunt en extra statistieken.</p><button class="tab" disabled>Binnenkort</button></div><div class="bx ad">Advertentieruimte</div>`}
 async function setDay(n){day=n;if(API.on){try{await loadAll()}catch(e){}}render()}
 function render(){
-$("ft").textContent=API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen.";
+$("ft").textContent=API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen."+" · v72";
 $("nav").innerHTML=[["wed","Wedstrijden"],["comp","Competities"],["fav","★ Favorieten"],["ref","⚖ Scheidsrechters"],["srch","🔎 Zoek"],["set",API.on?"● API":"⚙ API"]].map(([k,l])=>`<button class="tab ${view==k?"on":""}" data-v="${k}">${l}</button>`).join("");
 $("sub").innerHTML=view=="wed"?["Voetbal","Basketbal","Tennis","Volleybal","Overige sporten"].map(k=>`<button class="tab ${sport==k?"on":""}" data-s="${k}">${k}</button>`).join(""):"";
 {const n=M.filter(m=>m.st=="live").length,p=$("lp");p.className="lpill"+(onlyLive?" on":"");p.innerHTML=`<span class="dot"></span>${n} Live`}$("main").className=view=="wed"?"wide":"";$("tg").textContent=document.documentElement.dataset.theme=="dark"?"☀️":"🌙";
