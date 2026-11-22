@@ -581,7 +581,7 @@ function evSum(m){if(!m.ev||!m.ev.length)return"";const g=[[],[]];m.ev.filter(e=
 let FX={id:0,y:0,n:"",a:null,err:"",f:"a"};
 async function fixView(id,season,name){clearInterval(LT);lgCur=null;FX={id,n:name,y:+season,a:null,err:"",f:FX.id==id?FX.f:"a"};fxDraw();
 try{const{r,s:y}=await apiS("/fixtures?league="+id+"&season={S}",+season);if(FX.id!=id)return;FX.y=y;FX.a=r}catch(e){if(FX.id==id)FX.err=e.message}if(FX.id==id)fxDraw()}
-function fxDraw(){if($("ov").hidden)return;const cur=sea(),ys=[];for(let i=0;i<10;i++)ys.push(cur-i);
+function fxDraw(){if($("ov").hidden||!FX.id)return;const cur=sea(),ys=[];for(let i=0;i<10;i++)ys.push(cur-i);
 let b="";if(FX.a==null)b=FX.err?'<div class="mut">Fout: '+esc(FX.err)+"</div>":'<div class="mut">Laden…</div>';
 else{const raw=FX.a.slice().sort((a,b)=>a.fixture.timestamp-b.fixture.timestamp),ms=raw.map(mapFx).map(x=>M.find(m=>m.id==x.id)||(M.push(x),x)),F=FX.f,ok=m=>F=="a"||(F=="p"&&m.st=="ft")||(F=="u"&&m.st!="ft"),g={};
 ms.filter(ok).forEach(m=>(g[m.dt]=g[m.dt]||[]).push(m));const tk=dkey(0);let nxt=Object.keys(g).sort().find(d=>d>=tk);
@@ -859,7 +859,7 @@ $("ov").hidden=false;$("sh").innerHTML=`<div class="hero"><div class="hb"><span 
 document.addEventListener("click",e=>{const g=s=>e.target.closest(s);let x;
 if(x=g("[data-share]")){shareM();return}
 if(x=g("[data-shx]")){shareGo(x.dataset.shx);return}
-if(x=g("[data-x]")||(e.target.id=="ov"&&{})){open=null;comp=null;clearInterval(LT);lgCur=null;if(unsub){unsub();unsub=null}$("ov").hidden=true;return}
+if(x=g("[data-x]")||(e.target.id=="ov"&&{})){PL=null;TMS=null;if(typeof FX!="undefined"&&FX)FX.id=0;open=null;comp=null;clearInterval(LT);lgCur=null;if(unsub){unsub();unsub=null}$("ov").hidden=true;return}
 if(x=g("[data-tt]")){tt=x.dataset.tt;if(tt!="chat"&&unsub){unsub();unsub=null}show();return}
 if(x=g("[data-ss]")){ss=x.dataset.ss=="1";if(ss)loadSeason(M.find(m=>m.id==open));show();return}
 if(x=g("[data-fol]")){fol(+x.dataset.fol);return}
@@ -893,7 +893,7 @@ if(x=g("[data-ttab]")){if(TMS){TMS.tab=x.dataset.ttab;tmDraw();if(TMS.tab=="s")t
 if(x=g("[data-act]")){act(x.dataset.act);return}
 if(x=g("[data-lid]")){const[i,z,n]=x.dataset.lid.split("|");openLg(i,z,n);return}
 if(x=g("[data-team]")){openTeam(x.dataset.team);return}
-if(x=g("[data-id]")){if(unsub){unsub();unsub=null}open=+x.dataset.id;{const m1=M.find(m=>m.id==open);tt=m1&&m1.api&&m1.st!="ns"?"ev":"toto"}PO=null;ss=false;show();loadDetail(M.find(m=>m.id==open))}});
+if(x=g("[data-id]")){if(unsub){unsub();unsub=null}PL=null;TMS=null;FX.id=0;lgCur=null;clearInterval(LT);open=+x.dataset.id;{const m1=M.find(m=>m.id==open);tt=m1&&m1.api&&m1.st!="ns"?"ev":"toto"}PO=null;ss=false;show();loadDetail(M.find(m=>m.id==open))}});
 document.addEventListener("change",e=>{if(e.target.id=="dpk"&&e.target.value){const a=new Date(e.target.value+"T12:00:00"),t=new Date();t.setHours(12,0,0,0);if(!isNaN(a))setDay(Math.round((a-t)/864e5))}});
 document.addEventListener("input",e=>{if(e.target.id=="rq"){rfQ=e.target.value;refTable();return}if(e.target.id=="cq"){clist(e.target.value);teamSearch(e.target.value)}if(e.target.id=="stk"){window.stake=+e.target.value||0;const t=S.reduce((a,s)=>a*M.find(m=>m.id==s.id).o[s.k],1);$("pay").textContent="€ "+(t*window.stake).toFixed(2)}});
 document.addEventListener("change",e=>{if(e.target.id=="rfs"){rfSelV=e.target.value;refTable();return}if(e.target.id=="lg"){setLang(e.target.value);return}if(e.target.id=="ol"){onlyLive=e.target.checked;render()}});
