@@ -156,6 +156,42 @@ select#rfs{width:100%;padding:10px;border-radius:10px;border:1px solid var(--lin
 .mv{font-size:11px;margin-left:4px}
 #gb{position:fixed;left:10px;right:10px;top:calc(8px + env(safe-area-inset-top,0px));z-index:300;background:linear-gradient(135deg,#0f5a28,#16a34a);color:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.35);font-size:15px;cursor:pointer;animation:gbin .35s ease}
 #gb[hidden]{display:none}#gb .s{font-size:13px;opacity:.9;margin-top:2px}@keyframes gbin{from{transform:translateY(-120%)}to{transform:none}}
+
+/* ---- wedstrijdpagina: groter en duidelijker ---- */
+#ov{align-items:flex-end}
+.sh{font-size:16px;padding:0 0 calc(18px + env(safe-area-inset-bottom,0px));border-radius:20px 20px 0 0;max-width:960px}
+.sh .mut{font-size:14px}.sh .k{font-size:13px;letter-spacing:.05em;margin:20px 0 8px;color:var(--mut)}
+.hero{background:linear-gradient(180deg,#0f6b34,#0b4f27);background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 56px,transparent 56px 112px),linear-gradient(180deg,#12803d,#0b4f27);color:#fff;padding:14px 16px 16px;border-radius:20px 20px 0 0}
+.hb{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;font-weight:600;opacity:.95}
+.hb .hl{display:flex;align-items:center;gap:8px;min-width:0}.hb .hl img{width:22px;height:22px;object-fit:contain;background:#fff;border-radius:50%;padding:2px;flex:none}
+.hacts{display:flex;gap:6px;flex:none}.ib{border:0;background:rgba(255,255,255,.2);color:#fff;width:38px;height:38px;border-radius:50%;font-size:18px;line-height:1}
+.hm{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:14px 0 8px}
+.ht{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}.ht b{font-size:18px;line-height:1.2}
+.cr{width:60px;height:60px;object-fit:contain;background:#fff;border-radius:50%;padding:6px}.cr.ph{display:grid;place-items:center;font-weight:800;font-size:26px;color:#0b4f27}
+.hs{text-align:center}.big{font-size:46px;font-weight:800;letter-spacing:.02em;font-variant-numeric:tabular-nums;line-height:1}
+.stt{margin-top:8px;display:inline-block;font-size:14px;font-weight:700;background:rgba(255,255,255,.2);padding:4px 12px;border-radius:999px}.stt.lv{background:#e11d48}
+.hero .evs{font-size:14px;margin-top:10px;color:#e8fbee;opacity:.95}
+.hi{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;margin-top:12px;font-size:13px;color:#d8f5e0}
+.fr{padding:12px 16px 4px}.fr .tab{font-size:15px;padding:9px 14px}
+.tbs{display:flex;gap:2px;overflow-x:auto;position:sticky;top:0;z-index:3;background:var(--bg);padding:6px 12px 0;border-bottom:2px solid var(--line);margin-top:8px}
+.tt2{flex:none;border:0;background:none;padding:12px 14px;font-size:16px;font-weight:700;color:var(--mut);border-bottom:3px solid transparent;margin-bottom:-2px}
+.tt2.on{color:var(--pitch);border-bottom-color:var(--pitch)}
+.bd3{padding:4px 16px 8px}
+.sh table{font-size:15px}.sh th{font-size:12px}.sh th,.sh td{padding:10px 9px}
+.sh .ev .n{font-size:16px}.sh .ev .s{font-size:13px}.sh .ev .m{font-size:14px;padding:4px 11px}.sh .ev{margin:11px 0}
+.sh .tl:before{width:3px;background:color-mix(in srgb,var(--pitch) 35%,var(--line))}
+.sh .mk b{font-size:13px;padding:5px 14px}
+.sh .c{font-size:15px;padding:12px 14px}.sh .c b{font-size:19px}
+.sh .bar{font-size:16px;margin:12px 0;grid-template-columns:44px 1fr 44px}.sh .bar div{height:9px;border-radius:5px}.sh .bar em{font-size:13px}
+.sh .pb span{font-size:14px;padding:8px 2px}
+.sh .cm,.sh .ft{font-size:16px}
+@media(min-width:900px){#ov{align-items:center}.sh{border-radius:20px;max-height:90%;max-width:960px}.hero{border-radius:20px 20px 0 0;padding:20px 28px 22px}
+.hm{margin:20px 0 10px}.ht b{font-size:24px}.cr{width:84px;height:84px;padding:8px}.big{font-size:68px}.stt{font-size:16px;padding:5px 16px}.hb{font-size:16px}.hi{font-size:15px;gap:10px 28px}
+.hero .evs{font-size:16px}.fr{padding:16px 28px 6px}.fr .tab{font-size:16px}.tbs{padding:6px 24px 0}.tt2{font-size:17px;padding:14px 18px}.bd3{padding:8px 28px 12px}
+.sh table{font-size:16px}.sh .ev .n{font-size:17px}.sh .ev .s{font-size:14px}.sh .tl{max-width:760px;margin-left:auto;margin-right:auto}}
+@media(max-width:430px){.ht b{font-size:15px}.cr{width:50px;height:50px}.big{font-size:38px}.hm{gap:6px}}
+.sh .ev{grid-template-columns:1fr 68px 1fr}.sh .ev .m{display:block;grid-template-columns:none;border:0;margin:0;cursor:default;width:auto;min-width:56px;text-align:center;padding:4px 10px}
+.sh .ev .l{padding-right:10px}.sh .ev .r{padding-left:10px}
 </style></head><body>
 <header><h1 style="display:flex;justify-content:space-between;align-items:center"><span><span class="dot"></span>ScoreAtlas</span><span class="gr"><button class="lpill" id="lp" data-live="1"></button><button class="lpill" id="tg" data-theme-toggle="1" aria-label="Theme">🌙</button><select id="lg" class="tab" aria-label="Language"><option value="nl">Nederlands</option><option value="en">English (UK)</option><option value="us">English (US)</option><option value="tr">Türkçe</option><option value="es">Español (España)</option><option value="la">Español (Latinoamérica)</option><option value="pt">Português (Portugal)</option><option value="br">Português (Brasil)</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="it">Italiano</option><option value="zh">中文（简体）</option><option value="ja">日本語</option><option value="ko">한국어</option></select></span></h1>
 <div class="row" id="nav"></div><div class="row" id="sub"></div></header>
@@ -410,6 +446,7 @@ const fh=t=>[0,1,2,3,4].map(i=>{const l="WGV"[Math.floor(r(t+"f"+i)*3)];return`<
 const table=l=>LG[l].map(t=>{const w=Math.floor(r(t+l+"w")*9)+2,d=Math.floor(r(t+l+"d")*(12-w)*.7),v=12-w-d;return{t,w,d,v,gd:Math.round((w-v)*1.6+(r(t+l+"g")-.5)*4),p:3*w+d}}).sort((a,b)=>b.p-a.p||b.gd-a.gd);
 const stand=(l,hl=[])=>`<div class="tw"><table><tr><th>#  Team</th><th>Gs</th><th>W</th><th>G</th><th>V</th><th>DV</th><th>Pnt</th></tr>${table(l).map((x,i)=>`<tr class="${hl.includes(x.t)?"hl":""}"><td>${i+1}  ${x.t}</td><td>12</td><td>${x.w}</td><td>${x.d}</td><td>${x.v}</td><td>${x.gd>0?"+":""}${x.gd}</td><td><b>${x.p}</b></td></tr>`).join("")}</table></div>`;
 const lgo=(u,k)=>u&&/^https:\/\//.test(u)?`<img class="tlg ${k}" src="${u}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:"";
+const crest=(u,n)=>u?`<img class="cr" src="${esc(u)}" alt="">`:`<span class="cr ph">${esc((n||"?").trim().slice(0,1).toUpperCase())}</span>`;
 const row=m=>{const live=m.st=="live",ns=m.st=="ns",tm=live?`<span class="lv">${m.min}’</span>`:m.st=="ft"?'<span>Einde</span>':`<span>${m.hm||m.t}</span>`;
 return`<div class="r2${live?" lv":""}" data-id="${m.id}"><div class="tm">${tm}</div><div class="th">${m.h}${lgo(m.hl,"l")}${cb(m.h)}</div><div class="sc2">${ns?"v":m.s[0]+" - "+m.s[1]}</div><div class="ta">${lgo(m.al,"r")}${m.a}${cb(m.a)}</div><div class="ch">›</div></div>`};
 let day=0,FL=new Set;try{FL=new Set(JSON.parse(localStorage.getItem("lsfl")||"[]"))}catch(e){}
@@ -513,7 +550,10 @@ else if(tt=="stat"&&m.api){const x=m.sx;b=x?bar("Balbezit %",...x.p)+bar("Schote
 else if(tt=="stat"){const q=(s,lo,sp)=>Math.round((lo+r(k+s)*sp)*f),p=Math.round(42+r(k+"p")*16);
 b=(live?"":'<div class="mut">Seizoensgemiddelden</div>')+bar("Balbezit %",p,100-p)+bar("Schoten",q("s1",7,8),q("s2",6,8))+bar("Schoten op doel",q("t1",2,4),q("t2",2,4))+bar("Hoekschoppen",q("c1",3,5),q("c2",3,5))+bar("Gele kaarten",q("y1",0,3),q("y2",0,3))+bar("Overtredingen",q("f1",7,6),q("f2",7,6))}
 else b=m.api?(m.tb&&m.tb.length?lsBtn(m.lid)+standT(lsAdj(m.tb,m.lid),[m.h,m.a]):'<div class="empty">Stand niet beschikbaar of wordt geladen…</div>'):LG[m.lg]?stand(m.lg,[m.h,m.a]):'<div class="empty">Stand is alleen beschikbaar met een API-koppeling.</div>';
-$("ov").hidden=false;$("sh").innerHTML=`<button class="x" data-x="1">✕</button><button class="x" data-fol="${m.id}" title="Meldingen bij doelpunten">${F.has(m.id)?"🔔":"🔕"}</button><b style="font-size:17px">${m.h} ${m.st=="ns"?"–":m.s[0]+" – "+m.s[1]} ${m.a}</b><div class="mut">${m.lg} · ${live?'<span style="color:var(--live)">LIVE '+m.min+"’</span>":m.st=="ft"?"Einde":m.t}</div>${m.ven?`<div class="mut">🏟 ${esc(m.ven)}</div>`:""}${m.ref?`<div class="mut">Scheidsrechter: ${esc(m.ref)}</div>`:""}${evSum(m)}<div class="mut" style="margin-top:4px">👔 ${m.h}: ${ct(co(m.h))||"n.v.t."}<br>👔 ${m.a}: ${ct(co(m.a))||"n.v.t."}</div><div class="row" style="margin-top:8px">${[m.h,m.a].map(n=>`<button class="tab ${FT.has(n)?"on":""}" data-ft="${esc(n)}">${FT.has(n)?"★ Volgt":"☆ Volg"} ${esc(n)}</button>`).join("")}<button class="tab ${SND?"on":""}" data-snd="1" title="Geluid bij doelpunt">${SND?"🔊":"🔇"}</button></div><div class="row" style="margin-top:10px">${[["ev","Verloop"],["toto","Voorbeschouwing"],["opst","Opstelling"],["spel","Spelers"],["stat","Statistieken"],["stand","Stand"],["chat","💬 Forum"]].map(([a,l])=>`<button class="tab ${tt==a?"on":""}" data-tt="${a}">${l}</button>`).join("")}</div>${b}`;if(tt=="chat")bindChat(m);if(tt=="ai")aiDraw()}
+$("ov").hidden=false;$("sh").innerHTML=`<div class="hero"><div class="hb"><span class="hl">${m.ll?`<img src="${esc(m.ll)}" alt="">`:""}${m.lg}</span><span class="hacts"><button class="ib" data-fol="${m.id}" title="Meldingen bij doelpunten">${F.has(m.id)?"🔔":"🔕"}</button><button class="ib" data-x="1" aria-label="Sluiten">✕</button></span></div>
+<div class="hm"><div class="ht">${crest(m.hl,m.h)}<b>${m.h}</b></div><div class="hs"><div class="big">${m.st=="ns"?"–":m.s[0]+" – "+m.s[1]}</div><div class="stt${live?" lv":""}">${live?"● "+m.min+"’":m.st=="ft"?"Einde":m.t}</div></div><div class="ht">${crest(m.al,m.a)}<b>${m.a}</b></div></div>${evSum(m)}
+<div class="hi">${m.ven?`<span>🏟 ${esc(m.ven)}</span>`:""}${m.ref?`<span>⚖ Scheidsrechter: ${esc(m.ref)}</span>`:""}<span>👔 ${m.h}: ${ct(co(m.h))||"n.v.t."}</span><span>👔 ${m.a}: ${ct(co(m.a))||"n.v.t."}</span></div></div>
+<div class="row fr">${[m.h,m.a].map(n=>`<button class="tab ${FT.has(n)?"on":""}" data-ft="${esc(n)}">${FT.has(n)?"★ Volgt":"☆ Volg"} ${esc(n)}</button>`).join("")}<button class="tab ${SND?"on":""}" data-snd="1" title="Geluid bij doelpunt">${SND?"🔊":"🔇"}</button></div><div class="tbs">${[["ev","Verloop"],["toto","Voorbeschouwing"],["opst","Opstelling"],["spel","Spelers"],["stat","Statistieken"],["stand","Stand"],["chat","💬 Forum"]].map(([a,l])=>`<button class="tt2 ${tt==a?"on":""}" data-tt="${a}">${l}</button>`).join("")}</div><div class="bd3">${b}</div>`;if(tt=="chat")bindChat(m);if(tt=="ai")aiDraw()}
 document.addEventListener("click",e=>{const g=s=>e.target.closest(s);let x;
 if(x=g("[data-x]")||(e.target.id=="ov"&&{})){open=null;comp=null;clearInterval(LT);lgCur=null;if(unsub){unsub();unsub=null}$("ov").hidden=true;return}
 if(x=g("[data-tt]")){tt=x.dataset.tt;if(tt!="chat"&&unsub){unsub();unsub=null}show();return}
