@@ -274,7 +274,7 @@ return{n:FN[Math.floor(r(k+"f")*11)]+". "+LN[Math.floor(r(k+"l")*12)],p,sh,sot:+
 try{document.documentElement.dataset.theme=localStorage.getItem("lst")||"light"}catch(e){}
 const S=[];let view="wed",sport="Voetbal",onlyLive=false,open=null,tt="toto",comp=null;
 const DEF="https://v3.football.api-sports.io",DEMO=M;let API={on:false,key:"",base:DEF,msg:""},CATA=null,tmr;
-async function api(p){const x=await fetch(API.base+p,{headers:{"x-apisports-key":API.key}});if(!x.ok)throw new Error("HTTP "+x.status);const j=await x.json();if(j.errors&&Object.keys(j.errors).length)throw new Error(Object.values(j.errors)[0]);return j.response}
+async function api(p,t){t=t||0;const x=await fetch(API.base+p,{headers:{"x-apisports-key":API.key}});if(!x.ok)throw new Error("HTTP "+x.status);const j=await x.json();if(j.errors&&Object.keys(j.errors).length){const m=String(Object.values(j.errors)[0]);if(t<3&&/too many|rate/i.test(m)){await new Promise(r=>setTimeout(r,1500*(t+1)));return api(p,t+1)}throw new Error(m)}return j.response}
 async function apiS(tpl,season){const c=[],add=v=>{if(v>=2018&&!c.includes(v))c.push(v)};if(API.fb&&season>API.fb)add(API.fb);add(season);add(season-1);add(2024);add(2023);let err=null;
 for(const y of c){try{const r=await api(tpl.replace("{S}",y));if(r&&r.length){if(y<season)API.fb=y;return{r,s:y}}}catch(e){err=e}}
 if(err)throw err;return{r:[],s:season}}
@@ -448,5 +448,5 @@ setInterval(()=>{M.forEach(m=>{if(m.api||m.st!="live")return;m.min++;if(Math.ran
 document.addEventListener("keydown",e=>{if(e.key=="Enter"){if(e.target.id=="cm")send(M.find(m=>m.id==open));else if(e.target.id=="aiq")aiSend();else if(e.target.id=="sq")srch(e.target.value)}});
 setLang(LANG);trAll();
 const PROXY="https://scoreatlas.64pkrb59jg.workers.dev";
-(async()=>{if(PROXY){try{API.key="proxy";API.base=PROXY;await loadAll();API.on=true;API.msg="Verbonden";render()}catch(e){API.on=false;API.msg="Proxy-fout: "+e.message+" ("+location.origin+")";try{const b=document.createElement("div");b.style.cssText="position:fixed;bottom:0;left:0;right:0;background:#b00020;color:#fff;padding:10px;font:13px sans-serif;z-index:99";b.textContent=API.msg;document.body.appendChild(b)}catch(_){}}return}try{const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
+(async()=>{if(PROXY){try{API.key="proxy";API.base=PROXY;await loadAll();API.on=true;API.msg="Verbonden";render()}catch(e){API.on=false;API.msg="Proxy-fout: "+e.message+" ("+location.origin+")";}return}try{const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
 </script></body></html>
