@@ -447,5 +447,6 @@ document.addEventListener("change",e=>{if(e.target.id=="rfs"){rfSelV=e.target.va
 setInterval(()=>{M.forEach(m=>{if(m.api||m.st!="live")return;m.min++;if(Math.random()<.05){m.s[Math.random()<.5?0:1]++;if(F.has(m.id))note("⚽ "+m.h+" "+m.s[0]+"-"+m.s[1]+" "+m.a)}if(m.min>=90)m.st="ft"});if(view=="wed"){main_wed();$("nav").querySelectorAll("button")}if(open)rs()},5000);
 document.addEventListener("keydown",e=>{if(e.key=="Enter"){if(e.target.id=="cm")send(M.find(m=>m.id==open));else if(e.target.id=="aiq")aiSend();else if(e.target.id=="sq")srch(e.target.value)}});
 setLang(LANG);trAll();
-(async()=>{try{const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
+const PROXY="https://scoreatlas.64pkrb59jg.workers.dev";
+(async()=>{try{if(PROXY){API.key="proxy";API.base=PROXY;await loadAll();API.on=true;API.msg="Verbonden";render();return}const z=JSON.parse(localStorage.getItem("lsapi")||"null");if(z&&z.k){API.key=z.k;API.base=z.b||DEF;await loadAll();API.on=true;API.msg="Verbonden";render()}}catch(e){}})();
 </script></body></html>
