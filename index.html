@@ -41,7 +41,7 @@ main{padding:4px 14px 30px;max-width:720px;margin:auto}
 .sh{background:var(--bg);width:100%;max-width:720px;margin:auto;max-height:92%;overflow:auto;border-radius:16px 16px 0 0;padding:14px 14px calc(18px + env(safe-area-inset-bottom,0px))}
 .k{margin:14px 0 6px;font-size:12px;font-weight:600;color:var(--mut);text-transform:uppercase}
 .obr{display:flex;gap:6px;flex-wrap:wrap}.obr .ob{min-width:64px;padding:6px 8px}
-.pb{display:flex;gap:2px;margin:6px 0}.pb span{background:var(--line);padding:6px 2px;font-size:12px;text-align:center;border-radius:4px;min-width:0}
+.pbr{display:flex;gap:2px;margin:6px 0}.pbr span{background:var(--line);padding:6px 2px;font-size:12px;text-align:center;border-radius:4px;min-width:0}
 .fm{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;color:#fff;border-radius:4px;font-size:11px;margin-right:3px}
 .g{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}.c b{display:block;font-size:17px}
@@ -189,7 +189,7 @@ select#rfs{width:100%;padding:10px;border-radius:10px;border:1px solid var(--lin
 .sh .mk b{font-size:13px;padding:5px 14px}
 .sh .c{font-size:15px;padding:12px 14px}.sh .c b{font-size:19px}
 .sh .bar{font-size:16px;margin:12px 0;grid-template-columns:44px 1fr 44px}.sh .bar div{height:9px;border-radius:5px}.sh .bar em{font-size:13px}
-.sh .pb span{font-size:14px;padding:8px 2px}
+.sh .pbr span{font-size:14px;padding:8px 2px}
 .sh .cm,.sh .ft{font-size:16px}
 @media(min-width:900px){#ov{align-items:center}.sh{border-radius:20px;max-height:90%;max-width:960px}.hero{border-radius:20px 20px 0 0;padding:20px 28px 22px}
 .hm{margin:20px 0 10px}.ht b{font-size:24px}.cr{width:84px;height:84px;padding:8px}.big{font-size:68px}.stt{font-size:16px;padding:5px 16px}.hb{font-size:16px}.hi{font-size:15px;gap:10px 28px}
@@ -288,7 +288,7 @@ header{padding:8px max(24px,calc((100% - 1280px)/2)) 0}
 .sh .bar{font-size:13.5px;margin:8px 0;grid-template-columns:38px 1fr 38px}
 .sh .bar div{height:7px}
 .sh .bar em{font-size:12px}
-.sh .pb span{font-size:12px;padding:6px 2px}
+.sh .pbr span{font-size:12px;padding:6px 2px}
 .sh .cm,.sh .ft{font-size:13.5px}
 @media(min-width:700px){
 .sh{font-size:15px;max-width:820px}
@@ -391,6 +391,15 @@ header #nav .nmb{padding:12px 12px 11px;font-size:18px;line-height:1;letter-spac
 #nmore .tab{display:block;text-align:left;background:transparent;border:0;border-radius:9px;color:#e8f6ec;padding:12px 14px;font-size:15px;font-weight:600}
 #nmore .tab.on{background:rgba(183,243,74,.16);color:#fff}
 @media(max-width:420px){header #nav .tab{padding:12px 6px 11px;font-size:13.5px}header #nav .nmb{padding:12px 8px 11px}}
+
+.sh .fr{display:flex;flex-wrap:wrap;gap:8px;overflow:visible;padding:10px 14px 6px}
+.sh .fr .tab{font-size:13.5px;padding:8px 11px;white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis;flex:0 0 auto}
+.sh .fr [data-ft]{flex:1 1 calc(50% - 4px)}
+.sh .fr [data-fm]{flex:1 1 auto}
+.sh .tbs{background-color:var(--bg);background-image:linear-gradient(to right,var(--bg) 30%,rgba(255,255,255,0)),linear-gradient(to left,var(--bg) 30%,rgba(255,255,255,0)),radial-gradient(farthest-side at 0 50%,rgba(0,0,0,.22),rgba(0,0,0,0)),radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.22),rgba(0,0,0,0));background-repeat:no-repeat;background-position:left center,right center,left center,right center;background-size:28px 100%,28px 100%,10px 100%,10px 100%;background-attachment:local,local,scroll,scroll;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sh .tbs::-webkit-scrollbar{display:none}
+.sh .tbs .tt2{font-size:14px;padding:11px 10px}
+@media(min-width:700px){.sh .fr .tab{font-size:15px;padding:9px 14px}.sh .tbs .tt2{font-size:16px;padding:13px 16px}.sh .fr{padding:14px 24px 6px}}
 </style></head><body>
 <header><h1 class="hx"><span class="hl1"><button class="lpill" id="lp" data-live="1"></button><button class="lpill" id="tg" data-theme-toggle="1" aria-label="Theme">🌙</button></span><span class="brand" role="link" tabindex="0" aria-label="ScoreAtlas" onclick="location.href=location.pathname"><svg width="27" height="27" viewBox="0 0 512 512" style="flex:none" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#fff"/><g transform="translate(256 256) scale(.74) translate(-256 -264)"><g fill="none" stroke="#0e7a37" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"><path d="M226 184C210 150 158 136 124 152C84 170 86 228 150 254C214 280 236 308 216 348C196 388 116 394 74 348"/><path d="M266 396L352 150L438 396M296 330H408"/></g></g><rect x="196" y="410" width="120" height="20" rx="10" fill="#f5b800"/></svg><b>ScoreAtlas</b></span><span class="hr1"><select id="lg" class="tab" aria-label="Language"><option value="nl">Nederlands</option><option value="en">English (UK)</option><option value="us">English (US)</option><option value="tr">Türkçe</option><option value="es">Español (España)</option><option value="la">Español (Latinoamérica)</option><option value="pt">Português (Portugal)</option><option value="br">Português (Brasil)</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="it">Italiano</option><option value="zh">中文（简体）</option><option value="ja">日本語</option><option value="ko">한국어</option></select></span></h1>
 <div class="row" id="nav"></div><div class="row" id="sub"></div><div id="nmore" hidden></div></header>
@@ -600,7 +609,7 @@ if(CHK()){clearInterval(CT);CF=[];fLoad(id);CT=setInterval(()=>{if(document.hidd
 if(DB){try{const a=DB.collection("matches/"+id+"/preds").onSnapshot(q=>{LP[id]=q.docs.map(d=>d.data());drawP(m)},()=>{}),b=DB.collection("matches/"+id+"/msgs").orderBy("ts","desc").limit(60).onSnapshot(q=>{LM[id]=q.docs.map(d=>({id:d.id,...d.data()}));drawM(id)},()=>{});unsub=()=>{a();b()}}catch(e){}}
 drawP(m);drawM(id)}
 function drawP(m){const el=$("ps");if(!el||!m)return;const L=LP[m.id]||[],n=L.length,c={1:0,X:0,2:0},sc={};L.forEach(p=>{c[p.o]++;if(p.h!=null&&p.a!=null){const k=p.h+"-"+p.a;sc[k]=(sc[k]||0)+1}});const av=k=>n?Math.round(100*c[k]/n):0,top=Object.entries(sc).sort((a,b)=>b[1]-a[1])[0];
-el.innerHTML=`<div class="pb">${["1","X","2"].map(k=>`<span style="flex:${Math.max(av(k),10)}">${k} ${av(k)}%</span>`).join("")}</div><div class="mut">${n} voorspelling${n==1?"":"en"}${top?" · populairste uitslag "+top[0]:""}${m.st=="ft"&&n?" · "+Math.round(100*L.filter(p=>p.o==act1(m)).length/n)+"% had de juiste uitkomst":""}</div>`}
+el.innerHTML=`<div class="pbr">${["1","X","2"].map(k=>`<span style="flex:${Math.max(av(k),10)}">${k} ${av(k)}%</span>`).join("")}</div><div class="mut">${n} voorspelling${n==1?"":"en"}${top?" · populairste uitslag "+top[0]:""}${m.st=="ft"&&n?" · "+Math.round(100*L.filter(p=>p.o==act1(m)).length/n)+"% had de juiste uitkomst":""}</div>`}
 async function drawM(id){if(CHK()){drawF();return}const el=$("ch");if(!el)return;const ms=LM[id]||[];let P={};try{if(US)P=await US.profiles([...new Set(ms.map(x=>x.u).filter(u=>u&&u!="gast"))])}catch(e){}
 const e2=$("ch");if(!e2)return;e2.textContent="";if(!ms.length){e2.textContent="Nog geen berichten. Start het gesprek!";return}
 ms.slice().reverse().forEach(x=>{const d=document.createElement("div"),b=document.createElement("b"),t=document.createElement("span"),tm=document.createElement("small");d.className="cm";b.textContent=((P[x.u]||{}).name||(x.u==UID?"Jij":"Gast"))+" ";t.textContent=x.t;tm.className="mut";tm.textContent=" "+new Date(x.ts).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"});d.append(b,t,tm);if(OWN&&DB&&x.id){const k=document.createElement("button");k.textContent=" ✕";k.dataset.del=x.id;d.append(k)}e2.append(d)});e2.scrollTop=e2.scrollHeight}
@@ -795,11 +804,19 @@ async function loadDetail(m){if(!API.on||!m||!m.api||m.dl)return;m.dl=1;const fi
 const got=(k,p,f,ok)=>{const key="md:"+m.id+":"+k,v=fin?SAG(key):null;if(v&&v.v!=null)return Promise.resolve(v.v);return f(p).then(r=>{if(fin&&(ok?ok(r):r&&(!Array.isArray(r)||r.length)))SAP(key,r);return r})};
 const PS={G:"KEE",D:"VER",M:"MID",F:"AAN"};
 const mapPl=pl=>[m.h,m.a].map(n=>{const t=(pl||[]).find(x=>x.team.name==n);return t?t.players.map(x=>{const z=x.statistics[0]||{},g=z.games||{},sh=z.shots||{},cd=z.cards||{};return{id:x.player.id,n:x.player.name,p:PS[g.position]||"",sh:sh.total||0,sot:sh.on||0,gl:(z.goals||{}).total||0,y:cd.yellow||0,rd:cd.red||0,fm:+(g.rating||0)||"–",st:"Fit",mn:g.minutes}}):[]});
-got("lu","/fixtures/lineups?fixture="+m.id,c).then(lu=>{m.lu=lu;evFix(m);up()});
+const setSx=sx=>{const gs=(n,t)=>{const x=sx.find(z=>z.team.name==n),v=x?(x.statistics.find(z=>z.type==t)||{}).value:0;return parseInt(v)||0},pr=t=>[gs(m.h,t),gs(m.a,t)];
+m.sx=sx.length?{p:pr("Ball Possession"),s:pr("Total Shots"),t:pr("Shots on Goal"),c:pr("Corner Kicks"),y:pr("Yellow Cards"),f:pr("Fouls")}:null};
+const setAll=(lu,ev,pl,sx)=>{m.lu=lu;m.ev=ev;m.pl=pl;setSx(sx);evFix(m);up()};
+const sep=()=>{got("lu","/fixtures/lineups?fixture="+m.id,c).then(lu=>{m.lu=lu;evFix(m);up()});
 got("ev","/fixtures/events?fixture="+m.id,c).then(ev=>{m.ev=ev;evFix(m);up()});
 got("pl","/fixtures/players?fixture="+m.id,p=>c(p).then(mapPl),r=>r.some(a=>a.length)).then(r=>{m.pl=r;up()});
-got("sx","/fixtures/statistics?fixture="+m.id,c).then(sx=>{const gs=(n,t)=>{const x=sx.find(z=>z.team.name==n),v=x?(x.statistics.find(z=>z.type==t)||{}).value:0;return parseInt(v)||0},pr=t=>[gs(m.h,t),gs(m.a,t)];
-m.sx=sx.length?{p:pr("Ball Possession"),s:pr("Total Shots"),t:pr("Shots on Goal"),c:pr("Corner Kicks"),y:pr("Yellow Cards"),f:pr("Fouls")}:null;up()});
+got("sx","/fixtures/statistics?fixture="+m.id,c).then(sx=>{setSx(sx);up()})};
+const lk="mdl:"+m.id;
+if(!fin){const o=SAG(lk);if(o&&o.v&&Date.now()-o.t<18e5)try{setAll(o.v.lu||[],o.v.ev||[],o.v.pl||[[],[]],o.v.sx||[])}catch(e){}}
+{const cv={};let miss=false;["lu","ev","pl","sx"].forEach(k=>{const v=fin?SAG("md:"+m.id+":"+k):null;if(v&&v.v!=null)cv[k]=v.v;else miss=true});
+if(!miss)setAll(cv.lu,cv.ev,cv.pl,cv.sx);
+else api1("/fixtures?id="+m.id).then(r=>{const f=(r||[])[0];if(!f||!(f.events||f.lineups||f.statistics||f.players))throw 0;const lu=f.lineups||[],ev=f.events||[],pl=mapPl(f.players||[]),sx=f.statistics||[];setAll(lu,ev,pl,sx);
+if(fin){if(lu.length)SAP("md:"+m.id+":lu",lu);if(ev.length)SAP("md:"+m.id+":ev",ev);if(sx.length)SAP("md:"+m.id+":sx",sx);if(pl.some(x=>x.length))SAP("md:"+m.id+":pl",pl)}else SAP(lk,{lu,ev,pl,sx})}).catch(()=>sep())}
 c("/injuries?fixture="+m.id).then(inj=>{m.inj=inj.map(x=>{const rs=x.player.reason||"",sus=/suspen|card/i.test(rs);return{id:x.player.id||0,n:x.player.name,t:x.team.name,st:sus?"Geschorst":/question/i.test(x.player.type)?"Twijfel":"Geblesseerd",rs,y:0}});up()});
 c("/fixtures/headtohead?h2h="+m.hid+"-"+m.aid+"&last=5").then(h2=>{m.h2h=h2.length?h2.map(x=>x.goals.home+"-"+x.goals.away):["–"];const n=h2.length;
 m.ci=n?{g:(h2.reduce((a,x)=>a+x.goals.home+x.goals.away,0)/n).toFixed(1),o:Math.round(100*h2.filter(x=>x.goals.home+x.goals.away>2).length/n)+"%",b:Math.round(100*h2.filter(x=>x.goals.home>0&&x.goals.away>0).length/n)+"%"}:{};up()});
@@ -860,7 +877,7 @@ function asideL(){const P=API.on&&CATA?pinA().map(([t,a])=>[t,a.map(x=>`<div cla
 function asideR(){const L=M.filter(m=>m.st=="live").slice(0,8);return`<div class="bx"><div class="bt">Live nu</div>${L.map(m=>`<div class="ai2" data-id="${m.id}"><span>${m.h} – ${m.a}</span><b>${m.s[0]}-${m.s[1]}</b></div>`).join("")||'<div class="mut" style="padding:8px 0">Nu geen live wedstrijden.</div>'}</div><div class="bx pm"><div class="bt">ScoreAtlas Premium</div><p>Geen advertenties, meldingen bij elk doelpunt en extra statistieken.</p><button class="tab" disabled>Binnenkort</button></div><div class="bx ad">Advertentieruimte</div>`}
 async function setDay(n){day=n;if(API.on){try{await loadAll()}catch(e){}}render()}
 function render(){
-$("ft").textContent=(API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen.")+" · v94";
+$("ft").textContent=(API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen.")+" · v96";
 {const SET=API.on?"● API":"⚙ API";$("nav").innerHTML=[["wed","Wedstrijden"],["comp","Competities"],["fav","★ Favorieten"],["ref","⚖ Scheidsrechters","wd"],["srch",'<span>🔎</span><span class="nl"> Zoek</span>'],["set",SET,"wd"]].map(([k,l,c])=>`<button class="tab ${view==k?"on":""} ${c||""}" data-v="${k}"${k=="srch"?' aria-label="Zoeken" title="Zoeken"':""}>${l}</button>`).join("")+`<button class="tab nmb ${view=="ref"||view=="set"?"on":""}" data-more="1" aria-label="Meer" title="Meer">⋯</button>`;
 $("nmore").innerHTML=`<button class="tab ${view=="ref"?"on":""}" data-v="ref">⚖ Scheidsrechters</button><button class="tab ${view=="set"?"on":""}" data-v="set">${SET}</button>`;$("nmore").hidden=true}
 $("sub").innerHTML=view=="wed"&&SPORTS_ON?["Voetbal","Basketbal","Tennis","Volleybal","Overige sporten"].map(k=>`<button class="tab ${sport==k?"on":""}" data-s="${k}">${k}</button>`).join(""):"";
