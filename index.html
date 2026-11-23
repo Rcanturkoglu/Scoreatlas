@@ -375,6 +375,11 @@ html{touch-action:manipulation}
 .av{position:relative;flex:none;width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--lht);background:color-mix(in srgb,var(--pitch) 20%,var(--card));overflow:hidden}.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ir{justify-content:flex-start}.ir .nm{flex:1}.ih+.ir{border-top:0}
 .ok2{padding:14px 2px;font-weight:700;color:var(--live)}
+header{padding-top:10px}
+header h1.hx{margin:0 0 10px}
+header #nav .tab{padding:12px 14px 11px;font-size:14px}
+header #nav{padding-bottom:1px}
+main{padding-top:18px}
 </style></head><body>
 <header><h1 class="hx"><span class="hl1"><button class="lpill" id="lp" data-live="1"></button><button class="lpill" id="tg" data-theme-toggle="1" aria-label="Theme">🌙</button></span><span class="brand" role="link" tabindex="0" aria-label="ScoreAtlas" onclick="location.href=location.pathname"><svg width="27" height="27" viewBox="0 0 512 512" style="flex:none" aria-hidden="true"><rect width="512" height="512" rx="112" fill="#fff"/><g transform="translate(256 256) scale(.74) translate(-256 -264)"><g fill="none" stroke="#0e7a37" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"><path d="M226 184C210 150 158 136 124 152C84 170 86 228 150 254C214 280 236 308 216 348C196 388 116 394 74 348"/><path d="M266 396L352 150L438 396M296 330H408"/></g></g><rect x="196" y="410" width="120" height="20" rx="10" fill="#f5b800"/></svg><b>ScoreAtlas</b></span><span class="hr1"><select id="lg" class="tab" aria-label="Language"><option value="nl">Nederlands</option><option value="en">English (UK)</option><option value="us">English (US)</option><option value="tr">Türkçe</option><option value="es">Español (España)</option><option value="la">Español (Latinoamérica)</option><option value="pt">Português (Portugal)</option><option value="br">Português (Brasil)</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="it">Italiano</option><option value="zh">中文（简体）</option><option value="ja">日本語</option><option value="ko">한국어</option></select></span></h1>
 <div class="row" id="nav"></div><div class="row" id="sub"></div></header>
@@ -610,7 +615,7 @@ const FN="DLMISKNTJAB",LN=["Bakker","Silva","Novak","Haas","Costa","Reyes","Vida
 const squad=t=>["AAN","AAN","AAN","MID","MID","MID","VER","VER"].map((p,i)=>{const k=t+i,g=p=="AAN"?3:p=="MID"?1.5:.5,sh=+(g*(.6+r(k+"s")*.9)).toFixed(1);
 return{n:FN[Math.floor(r(k+"f")*11)]+". "+LN[Math.floor(r(k+"l")*12)],p,sh,sot:+(sh*(.3+r(k+"o")*.3)).toFixed(1),gl:Math.round(sh*(p=="AAN"?2.5:.8)*r(k+"g")*3),y:Math.floor(r(k+"y")*(p=="VER"?7:5)),rd:r(k+"r")<.06?1:0,fm:+(6+r(k+"m")*2.3).toFixed(1),st:r(k+"i")<.1?"Geblesseerd":r(k+"t")<.18?"Twijfel":"Fit"}});
 try{document.documentElement.dataset.theme=localStorage.getItem("lst")||"light"}catch(e){}
-const S=[];let view="wed",sport="Voetbal",onlyLive=false,open=null,tt="toto",comp=null;
+const SPORTS_ON=false;const S=[];let view="wed",sport="Voetbal",onlyLive=false,open=null,tt="toto",comp=null;
 const DEF="https://v3.football.api-sports.io",DEMO=M;let API={on:false,key:"",base:DEF,msg:""},CATA=null,tmr;
 async function api(p,t){t=t||0;const x=await fetch(API.base+p,API.key=="proxy"?undefined:{headers:{"x-apisports-key":API.key}});if(!x.ok)throw new Error("HTTP "+x.status);const j=await x.json();if(j.errors&&Object.keys(j.errors).length){const m=String(Object.values(j.errors)[0]);if(t<3&&/too many|rate/i.test(m)){await new Promise(r=>setTimeout(r,1500*(t+1)));return api(p,t+1)}throw new Error(m)}return j.response}
 
@@ -844,9 +849,9 @@ function asideL(){const P=API.on&&CATA?pinA().map(([t,a])=>[t,a.map(x=>`<div cla
 function asideR(){const L=M.filter(m=>m.st=="live").slice(0,8);return`<div class="bx"><div class="bt">Live nu</div>${L.map(m=>`<div class="ai2" data-id="${m.id}"><span>${m.h} – ${m.a}</span><b>${m.s[0]}-${m.s[1]}</b></div>`).join("")||'<div class="mut" style="padding:8px 0">Nu geen live wedstrijden.</div>'}</div><div class="bx pm"><div class="bt">ScoreAtlas Premium</div><p>Geen advertenties, meldingen bij elk doelpunt en extra statistieken.</p><button class="tab" disabled>Binnenkort</button></div><div class="bx ad">Advertentieruimte</div>`}
 async function setDay(n){day=n;if(API.on){try{await loadAll()}catch(e){}}render()}
 function render(){
-$("ft").textContent=API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen."+" · v90";
+$("ft").textContent=API.on?"Live data via API-Football.":"DEMO: voorbeelddata en gesimuleerde updates, geen echte uitslagen."+" · v91";
 $("nav").innerHTML=[["wed","Wedstrijden"],["comp","Competities"],["fav","★ Favorieten"],["ref","⚖ Scheidsrechters"],["srch","🔎 Zoek"],["set",API.on?"● API":"⚙ API"]].map(([k,l])=>`<button class="tab ${view==k?"on":""}" data-v="${k}">${l}</button>`).join("");
-$("sub").innerHTML=view=="wed"?["Voetbal","Basketbal","Tennis","Volleybal","Overige sporten"].map(k=>`<button class="tab ${sport==k?"on":""}" data-s="${k}">${k}</button>`).join(""):"";
+$("sub").innerHTML=view=="wed"&&SPORTS_ON?["Voetbal","Basketbal","Tennis","Volleybal","Overige sporten"].map(k=>`<button class="tab ${sport==k?"on":""}" data-s="${k}">${k}</button>`).join(""):"";
 {const n=M.filter(m=>m.st=="live").length,p=$("lp");p.className="lpill"+(onlyLive?" on":"");p.innerHTML=`<span class="dot"></span>${n} Live`}$("main").className=view=="wed"?"wide":"";$("tg").textContent=document.documentElement.dataset.theme=="dark"?"☀️":"🌙";
 if(view!="wed")$("main")._v="";if(view=="wed")main_wed();else if(view=="comp"){$("main").innerHTML='<input type="text" id="cq" placeholder="Zoek competitie of land…" style="margin:8px 0"><div id="tl"></div><div id="cl"></div>';clist("")}else if(view=="ref")refDraw();else if(view=="fav")favView();else if(view=="set")setView();else if(view=="coach")coachView();else if(view=="srch")srchView();else if(view=="ai")aiView();
 if(open)rs()}
