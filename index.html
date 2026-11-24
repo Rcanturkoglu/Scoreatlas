@@ -525,19 +525,19 @@ nt-x{display:inline}
 .qg summary::after{content:"›";font-size:20px;color:#8aa396;transition:transform .15s;margin-left:2px}
 .qg[open] summary::after{transform:rotate(90deg)}
 .qgl{border-top:1px solid #edf3ef}
-.qr{display:grid;grid-template-columns:46px 1fr 28px;align-items:center;gap:8px;padding:9px 14px 9px 11px;border-left:3px solid transparent;border-bottom:1px solid #f1f5f2;cursor:pointer}
+.qr{display:grid;grid-template-columns:54px minmax(0,1fr) 30px;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-left:4px solid transparent;border-bottom:1px solid #f1f5f2;cursor:pointer;float:none;width:auto;min-height:62px;box-sizing:border-box;transition:background .12s}.qr:active{background:#f4f8f5}@media(hover:hover){.qr:hover{background:#f7faf8}}
 .qr:last-child{border-bottom:0}
-.qr.w{border-left-color:#22b35a}.qr.d{border-left-color:#b5c0b9}.qr.x{border-left-color:#e5484d}.qr.l{border-left-color:#e5484d;background:#fff5f5}
-.qd{display:flex;flex-direction:column;line-height:1.2}
-.qd b{font-size:12px;font-weight:700;color:#3d5a49}
+.qr.w{border-left-color:#22b35a}.qr.d{border-left-color:#b5c0b9}.qr.lo{border-left-color:#e5484d}.qr.l{border-left-color:#e5484d;background:#fff5f5}
+.qd{display:flex;flex-direction:column;line-height:1.25;white-space:nowrap;font-variant-numeric:tabular-nums}
+.qd b{font-size:12.5px;font-weight:700;color:#3d5a49}
 .qd small{font-size:11px;color:#7c9488}
 .qr.l .qd small{color:#e5484d;font-weight:700}
 .qt{display:flex;flex-direction:column;gap:4px;min-width:0}
-.ql{display:flex;align-items:center;gap:7px;min-width:0;font-size:13.5px;color:#2b4a39}
-.ql img,.ql .qn{width:18px;height:18px;object-fit:contain;flex:none}.ql .qn,.qg summary .qn{background:#eef3f0;border-radius:50%}.qg summary .qn{width:24px;height:24px}
+.ql{display:flex;align-items:center;gap:8px;min-width:0;height:20px;font-size:14px;color:#2b4a39}
+.ql img,.ql .qn{width:20px;height:20px;object-fit:contain;flex:none}.ql .qn,.qg summary .qn{background:#eef3f0;border-radius:50%}.qg summary .qn{width:24px;height:24px}
 .ql span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ql.me span{font-weight:700;color:#0e2a1b}
-.qs{display:flex;flex-direction:column;gap:4px;text-align:center;font-size:13.5px}
+.qs{display:flex;flex-direction:column;gap:4px;text-align:right;font-size:14.5px;font-variant-numeric:tabular-nums}.qs b,.qs em{height:20px;line-height:20px}
 .qs b{font-weight:800;color:#0e2a1b}.qs em{font-style:normal;color:#9db0a5}
 .prb b{font-size:15px}
 .bn{margin:8px 0 12px;padding:12px 12px 6px;border-radius:16px;background:#fff;border:1px solid #e3ebe5}
@@ -973,7 +973,7 @@ A.forEach(f=>{const m0=mapFx(f),m=M.find(z=>z.id==m0.id)||(M.push(m0),m0);let o=
 const gs=[...G.values()].sort((p,q)=>cmpA(rk(p.lg),rk(q.lg))),up=gs.map(o=>[o,(o.ms.find(m=>m.st!="ft"&&m.ts>=now-72e5)||{}).ts]).filter(x=>x[1]).sort((p,q)=>p[1]-q[1])[0],opn=up?up[0].id:(gs[0]||{}).id;
 let nxd=null;
 const ch=cp.size>1?`<div class="row tcf">${[["","Alles"],...[...cp.entries()]].map(([k,l])=>`<button class="tab ${String(T.cf||"")==String(k)?"on":""}" data-tcf="${k}">${esc(l)}</button>`).join("")}</div>`:"";
-const rw=(m,o)=>{const ns=m.st=="ns",lv=m.st=="live",mh=m.hid==T.id,my=mh?m.s[0]:m.s[1],ot=mh?m.s[1]:m.s[0],cl=ns?"n":lv?"l":my>ot?"w":my==ot?"d":"x",d=new Date(m.ts||m.dt),id0=(!nxd&&o.id==opn&&(ns||lv))?(nxd=1,' id="tmnx"'):"";
+const rw=(m,o)=>{const ns=m.st=="ns",lv=m.st=="live",mh=m.hid==T.id,my=mh?m.s[0]:m.s[1],ot=mh?m.s[1]:m.s[0],cl=ns?"n":lv?"l":my>ot?"w":my==ot?"d":"lo",d=new Date(m.ts||m.dt),id0=(!nxd&&o.id==opn&&(ns||lv))?(nxd=1,' id="tmnx"'):"";
 return`<div class="qr ${cl}"${id0} data-id="${m.id}"><span class="qd"><b>${d.toLocaleDateString(LOC[LANG],{day:"numeric",month:"short"})}</b><small>${ns?esc(m.hm||""):lv?"● "+m.min+"’":""}</small></span><span class="qt"><span class="ql${mh?" me":""}">${m.hl?`<img src="${esc(m.hl)}" alt="" loading="lazy">`:'<b class="qn"></b>'}<span>${esc(sn(m.h))}</span></span><span class="ql${mh?"":" me"}">${m.al?`<img src="${esc(m.al)}" alt="" loading="lazy">`:'<b class="qn"></b>'}<span>${esc(sn(m.a))}</span></span></span><span class="qs">${ns?"<em>–</em><em>–</em>":`<b>${m.s[0]}</b><b>${m.s[1]}</b>`}</span></div>`};
 b=ch+gs.map(o=>{const pl=o.ms.filter(m=>m.st=="ft").length,op=T.op&&T.op[o.id]!==undefined?T.op[o.id]:(T.cf?true:o.id==opn);
 return`<details class="qg" data-tg="${o.id}"${op?" open":""}><summary>${o.l?`<img src="${esc(o.l)}" alt="" loading="lazy">`:'<b class="qn"></b>'}<span class="qgn"><b>${esc(o.n)}</b><small>${esc(o.c)}</small></span><em>${pl}/${o.ms.length}</em></summary><div class="qgl">${o.ms.map(m=>rw(m,o)).join("")}</div></details>`}).join("")||'<div class="mut">Geen wedstrijden.</div>'}}
