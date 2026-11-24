@@ -992,17 +992,17 @@ try{const[a,b]=await Promise.all([api1("/fixtures?team="+id+"&last=5"),api1("/fi
 const nmOf=T=>{let nm="";(T.a||[]).concat(T.b||[]).forEach(f=>{[f.teams.home,f.teams.away].forEach(t=>{if(t.id==T.id)nm=t.name})});if(T.sq&&T.sq.team)nm=T.sq.team.name||nm;return nm};
 const WK={nl:"nl",en:"en",us:"en",tr:"tr",es:"es",la:"es",de:"de",fr:"fr",it:"it",pt:"pt",br:"pt",zh:"zh",ja:"ja",ko:"ko"};
 function trimTxt(t,n){t=String(t||"").replace(/\s+/g," ").trim();if(t.length<=n)return t;const c=t.slice(0,n),i=Math.max(c.lastIndexOf(". "),c.lastIndexOf("。"));return (i>200?c.slice(0,i+1):c.replace(/\s+\S*$/,"")+"…")}
-const WCP={};const tFetch=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||7000);return fetch(u,{headers:{"Accept":"application/json"},signal:c.signal}).then(r=>r.json()).finally(()=>clearTimeout(t))};
+const fold=x=>String(x||"").replace(/ı/g,"i").replace(/İ/g,"I").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ø/gi,"o").replace(/æ/gi,"ae").replace(/ß/g,"ss").toLowerCase();const WCP={};const tFetch=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||7000);return fetch(u,{headers:{"Accept":"application/json"},signal:c.signal}).then(r=>r.json()).finally(()=>clearTimeout(t))};
 function wikiClub(nm,wl){const k=nm+"|"+wl;if(WCP[k])return WCP[k];const ck="wc:"+k,c0=SAG(ck);if(c0&&c0.v)return WCP[k]=Promise.resolve(c0.v);
 const pick=async(term)=>{const q=await tFetch("https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&origin=*&generator=search&gsrlimit=3&gsrsearch="+encodeURIComponent(term)+"&prop=langlinks|pageprops&ppprop=wikibase_item&lllimit=50&lllang="+wl);const ps=((q.query||{}).pages||[]).slice().sort((a,b)=>(a.index||9)-(b.index||9)),f0=fold(nm).split(" ")[0];return ps.find(z=>fold(z.title).includes(f0)&&!/season|stadium|players|history of|rivalry|women|u\d\d/i.test(z.title))};
 return WCP[k]=(async()=>{let p=null;try{p=await pick(nm+" football club")}catch(e){}if(!p){try{p=await pick(nm)}catch(e){}}if(!p){delete WCP[k];return null}const v={title:p.title,qid:((p.pageprops||{}).wikibase_item)||"",ll:p.langlinks||[]};SAP(ck,v);return v})()}
-async function tmInfo(nm){const T=TMS;if(!T||T.inf)return;const wl=WK[LANG]||"en",ck="ti:"+T.id+":"+wl,c0=SAG(ck);if(c0&&c0.v){T.inf={...c0.v,busy:false};tmDraw();return}
+async function tmInfo(nm){const T=TMS;if(!T||T.inf)return;const wl=WK[LANG]||"en",ck="ti2:"+T.id+":"+wl,c0=SAG(ck);if(c0&&c0.v&&c0.v.tx){T.inf={...c0.v,busy:false};tmDraw();return}
 T.inf={busy:true,fa:null};tmDraw();
 const pFa=api1("/teams?id="+T.id).then(r=>{const x=(r||[])[0]||{};return{f:(x.team||{}).founded,cn:(x.team||{}).country,v:(x.venue||{}).name,vc:(x.venue||{}).city,cap:(x.venue||{}).capacity}}).catch(()=>null);
 const pTx=(async()=>{if(!nm)return null;const p=await wikiClub(nm,wl);if(!p)return null;const ll=p.ll.find(z=>z.lang==wl),title=wl=="en"||!ll?p.title:ll.title,lang=wl=="en"||!ll?"en":wl;
 const sm=await tFetch("https://"+lang+".wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(title.replace(/ /g,"_")));return sm&&sm.extract&&sm.type!="disambiguation"?{t:trimTxt(sm.extract,780),u:(((sm.content_urls||{}).desktop)||{}).page||"",l:lang}:null})().catch(()=>null);
 pFa.then(fa=>{if(T.inf&&T.inf.busy&&fa){T.inf.fa=fa;if(TMS===T&&T.tab=="i")tmDraw()}});
-const[fa,tx]=await Promise.all([pFa,pTx]);T.inf={busy:false,fa,tx};if(fa||tx)SAP(ck,{fa,tx});if(TMS===T)tmDraw()}
+const[fa,tx]=await Promise.all([pFa,pTx]);T.inf={busy:false,fa,tx};if(tx)SAP(ck,{fa,tx});if(TMS===T)tmDraw()}
 function tmInfoHTML(T,nm){const i=T.inf;if(!i||(i.busy&&!i.fa))return'<div class="mut">Laden…</div>';const fa=i.fa||{};
 const rows=[["Opgericht",fa.f],["Stadion",[fa.v,fa.vc].filter(Boolean).join(", ")],["Capaciteit",fa.cap?Number(fa.cap).toLocaleString(LOC[LANG]):""]].filter(r=>r[1]);
 let b="";
