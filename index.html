@@ -672,12 +672,13 @@ plDraw();
 const cur=sea(),cached=!!(c0&&c0.v&&c0.v.ys&&c0.v.ys.length);
 P.ys=cached?c0.v.ys:[cur,cur-1,cur-2,cur-3,cur-4,cur-5];
 const Q=[],seen=new Set();
-const one=async y=>{try{const r=await api1("/players?id="+id+"&season="+y);P.seas[y]=((r[0]||{}).statistics||[]).map(PLC);if(!P.prof||!P.prof.name){const q=(r[0]||{}).player;if(q)P.prof={...q,...(P.prof||{})}}}catch(e){if(P.seas[y]==null)P.seas[y]=[]}if(PL===P)plDraw()};
+const dr=()=>{if(P._d)return;P._d=setTimeout(()=>{P._d=0;if(PL===P)plDraw()},90)};
+const one=async y=>{try{const r=await api1("/players?id="+id+"&season="+y);P.seas[y]=((r[0]||{}).statistics||[]).map(PLC);if(!P.prof||!P.prof.name){const q=(r[0]||{}).player;if(q)P.prof={...q,...(P.prof||{})}}}catch(e){if(P.seas[y]==null)P.seas[y]=[]}dr()};
 const work=async()=>{while(Q.length&&PL===P)await one(Q.shift())};
-const run=ys=>{ys.forEach(y=>{if(seen.has(y))return;seen.add(y);if(cached&&y<cur-1&&P.seas[y])return;Q.push(y)});const w=[];for(let i=0;i<Math.min(6,Q.length);i++)w.push(work());return Promise.all(w)};
+const run=ys=>{ys.forEach(y=>{if(seen.has(y))return;seen.add(y);if(cached&&y<cur-1&&P.seas[y])return;Q.push(y)});const w=[];for(let i=0;i<Math.min(10,Q.length);i++)w.push(work());return Promise.all(w)};
 try{const first=run(P.ys);
-const pP=api1("/players/profiles?player="+id).catch(()=>[]).then(pr=>{const p0=(pr[0]||{}).player||pr[0]||null;if(p0)P.prof={...(P.prof||{}),...p0};if(PL===P)plDraw()});
-const sP=api1("/players/seasons?player="+id).catch(()=>[]).then(sy=>{const l=(sy||[]).map(Number).filter(Boolean).sort((a,b)=>b-a);if(l.length)P.ys=l;if(PL===P)plDraw();return run(P.ys)});
+const pP=api1("/players/profiles?player="+id).catch(()=>[]).then(pr=>{const p0=(pr[0]||{}).player||pr[0]||null;if(p0)P.prof={...(P.prof||{}),...p0};dr()});
+const sP=api1("/players/seasons?player="+id).catch(()=>[]).then(sy=>{const l=(sy||[]).map(Number).filter(Boolean).sort((a,b)=>b-a);if(l.length)P.ys=l;dr();return run(P.ys)});
 await Promise.all([first,pP,sP]);
 SAP(ck,{prof:P.prof,ys:P.ys,seas:P.seas})}catch(e){P.err=e.message}
 P.busy=false;if(PL===P)plDraw()}
