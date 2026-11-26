@@ -1237,7 +1237,7 @@ if(LANG=="la"){if(LAT.has(c)&&/liga mx|liga profesional|primera a\b|primera divi
 if(LANG=="zh"||LANG=="ja"||LANG=="ko"){const hm=LANG=="zh"?"china":LANG=="ja"?"japan":"south-korea",lg=/^(super league|j1 league|k league 1)$/.test(nm);if(lg&&c==hm)return -3;if(lg&&/^(china|japan|south-korea)$/.test(c))return -2;if(c=="world"&&/afc champions|afc cup|asian cup/.test(nm))return -2}
 if(LANG=="us"){if(c=="usa"&&/major league soccer/.test(nm))return -3;if(c=="mexico"&&/liga mx/.test(nm))return -2;if(w)return -2}
 return null}
-const rk=l=>{if(FL.has(l))return[0,0,0,"",l];const p=l.split(" · "),c=(p.length>1?p[0]:"").toLowerCase(),nm=(p.length>1?p.slice(1).join(" · "):l).toLowerCase().replace(/^uefa /,"");{const rb=regB(c,nm);if(rb!=null)return[1,rb,0,"",nm]}
+const rk=l=>{if(FL.has(l))return[0,0,0,"",l];const p=l.split(" · "),c=(p.length>1?p[0]:"").toLowerCase(),nm=(p.length>1?p.slice(1).join(" · "):l).toLowerCase().replace(/^uefa /,"").replace(/^europa conference league$/,"conference league");{const rb=regB(c,nm);if(rb!=null)return[1,rb,0,"",nm]}
 const ti=TOPC.indexOf(nm),wd=c==""||c=="world"||c=="europe";
 if(ti>=0&&ti<3&&wd)return[1,ti,0,"",nm];
 if(wd&&c=="world"&&/world cup|euro\b|euro championship|nations league|copa am|africa cup|libertadores|sudamericana|asian cup|gold cup|olympic/.test(nm))return[1,20,0,"",nm];
