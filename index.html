@@ -67,6 +67,8 @@ tr.hl td{background:color-mix(in srgb,var(--pitch) 20%,transparent)}
 .tl .ev.sb{margin:2px 0}.tl .ev.sb .n{font-size:12px;font-weight:500;color:var(--mut)}.tl .ev.sb .m{font-size:11px;padding:1px 7px;opacity:.8}.tl.nosub .ev.sb{display:none}
 .sbt{text-align:center;margin:8px 0 0}.sbt .tab{font-size:12px;padding:5px 12px}
 .gbx .evs{font-size:13px;gap:4px 10px}.tl .ev.g .l:not(:empty),.tl .ev.g .r:not(:empty){padding-top:3px;padding-bottom:3px}.tl .ev.g .n{font-size:15px}
+.tl .ev.g .l:not(:empty),.tl .ev.g .r:not(:empty){background:color-mix(in srgb,var(--pitch) 9%,transparent);border-radius:12px}.tl .ev .n{letter-spacing:-.1px}.tl:before{width:2px;opacity:.7}
+.tl .ev.g .n{font-size:14px;font-weight:800;line-height:1.25}
 .bar{display:grid;grid-template-columns:34px 1fr 34px;gap:8px;align-items:center;font-size:13px;margin:7px 0}
 .bar div{display:flex;height:6px;background:var(--line);border-radius:3px;overflow:hidden}.bar div span{background:var(--pitch)}
 .bar em{font-style:normal;text-align:center;grid-column:1/4;font-size:11px;color:var(--mut);margin-bottom:-4px}
@@ -927,7 +929,7 @@ const cell=sd==0?`${top?`<div class="s">${top}</div>`:""}<div class="n">${l1} ${
 o+=`<div class="ev${g}${sb?" sb":""}"><div class="l">${sd==0?cell:""}</div><div class="m">${evMin(e)}</div><div class="r">${sd==1?cell:""}</div></div>`});
 if(!ht&&(fin||(live&&m.min>45)))o+=mk("Rust");
 if(fin)o+=mk("Einde");else if(live)o+=mk("● "+mLab(m),"live");
-const nn=E.some(e=>(e.type=="Goal"||e.type=="Card")&&!(e.player||{}).name);const gs=evSum(m);return tvHTML(m)+(gs?`<div class="gbx"><b>⚽ Doelpunten</b>${gs}</div>`:"")+(nsb?`<div class="sbt"><button class="tab" data-sbt="1">🔄 Wissels tonen (${nsb})</button></div>`:"")+`<div class="tl${nsb?" nosub":""}">${o}</div>`+momHTML(m)+(nn?'<div class="mut" style="text-align:center;margin-top:10px">Voor deze competitie geeft de databron geen spelersnamen, wissels of VAR door.</div>':"")}
+const nn=E.some(e=>(e.type=="Goal"||e.type=="Card")&&!(e.player||{}).name);return tvHTML(m)+(nsb?`<div class="sbt"><button class="tab" data-sbt="1">🔄 Wissels tonen (${nsb})</button></div>`:"")+`<div class="tl${nsb?" nosub":""}">${o}</div>`+momHTML(m)+(nn?'<div class="mut" style="text-align:center;margin-top:10px">Voor deze competitie geeft de databron geen spelersnamen, wissels of VAR door.</div>':"")}
 function PLK(p){const n=(p||{}).name||"";return p&&p.id&&n?`<span class="pl" data-pid="${p.id}" data-pn="${esc(n)}">${esc(n)}</span>`:esc(n)}
 function evSum(m){if(!m.ev||!m.ev.length)return"";const g=[[],[]];m.ev.filter(e=>e.type=="Goal"&&!/missed|shootout/i.test((e.detail||"")+(e.comments||""))).sort((a,b)=>a.time.elapsed-b.time.elapsed).forEach(e=>{g[evSide(m,e)].push(PLK(e.player)+" "+evMin(e)+(/own/i.test(e.detail||"")?" (OG)":""))});if(!g[0].length&&!g[1].length)return"";return`<div class="evs"><div>${g[0].map(x=>"⚽ "+x).join("<br>")}</div><div>${g[1].map(x=>"⚽ "+x).join("<br>")}</div></div>`}
 let FX={id:0,y:0,n:"",a:null,err:"",ri:-1,sp:false,mem:{}};
