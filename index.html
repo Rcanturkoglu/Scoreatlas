@@ -1358,7 +1358,7 @@ ms.forEach(m=>{const c=m.lg.split(" · ")[0];if(m.api&&c&&c!="World"&&c!="Europe
 if(ch)try{localStorage.setItem("lstc",JSON.stringify(TC))}catch(e){}
 const ih=m=>m.lg.split(" · ")[0]==HC||m.h==HC||m.a==HC||TC[m.hid]==HC||TC[m.aid]==HC||(HC=="Turkey"&&TRX.test(m.h+" "+m.a));
 Object.keys(g).forEach(l=>{const t=g[l].filter(ih);if(!t.length)return;const r=g[l].filter(m=>!ih(m));tops.push([l,t]);if(r.length)g[l]=r;else delete g[l]});
-tops.sort((x,y)=>(y[0].split(" · ")[0]==HC)-(x[0].split(" · ")[0]==HC))}
+tops.sort((x,y)=>(y[0].split(" · ")[0]==HC)-(x[0].split(" · ")[0]==HC)||cmpA(rk(x[0]),rk(y[0])))}
 const tp=l=>{const r=rk(l);return r[0]<=1||(r[0]==2&&r[1]==0)?1:0},od=l=>{const i=LO.indexOf(l);return i<0?1e9:i},ks=Object.keys(g).sort((x,y)=>tp(y)-tp(x)||od(x)-od(y)||cmpA(rk(x),rk(y))),oi=ks.findIndex(l=>rk(l)[0]==3&&!LO.includes(l));KSC=ks;
 const lob=ks.length>1?`<div class="row" style="margin:6px 0"><button class="tab${LOE?" on":""}" data-loe="1">⇅ ${LOE?"Klaar":"Competities ordenen"}</button>${LOE&&LO.length?'<button class="tab" data-lor="1">Standaardvolgorde</button>':""}</div>`:"";
 if(LOE&&ks.length>1)h=lob+'<div class="mut" style="margin:4px 4px 8px">Tik op de pijltjes om de volgorde te bepalen.</div><div class="lc">'+ks.map((l,i)=>`<div class="m" style="grid-template-columns:1fr auto auto;cursor:default"><span>${esc(l)}</span><button class="tab" data-lom="${i}§-1" aria-label="Omhoog">▲</button><button class="tab" data-lom="${i}§1" aria-label="Omlaag">▼</button></div>`).join("")+"</div>";
